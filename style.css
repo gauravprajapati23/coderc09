@@ -1,0 +1,123 @@
+ 
+ .que-prompt {
+        background-color: #000;
+        color: #0ff; /* Neon text color */
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 16px;
+        margin:0.5cm;
+        margin-bottom:0.1cm;
+    }
+ .code-area {
+        background-color: #000;
+        color: #0ff; /* Neon text color */
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 16px;
+        margin: 0.7cm;
+        margin-top:0.1cm;
+        overflow: hidden;
+        overflow: auto;
+        width: auto;
+        height: auto;
+    }
+   pre{
+       overflow: hidden;
+       overflow: auto;
+       overflow: visible;
+       overflow: scroll;
+   }
+   hr {
+  border: none; /* Remove default border */
+  height: 3px; /* Set height */
+  background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); /* Gradient effect */
+  border-radius: 5px; /* Rounded corners */
+  margin: 20px 0; /* Set margin (top and bottom) */
+}
+
+     /* Gradient background */
+    body {
+        background: linear-gradient(to left, #333333, #666666);
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-family: Fantasy;
+        line-height: 1.80857;
+        font-weight: normal;
+    }
+
+    /* Top heading styles */
+   h1 {
+        font-family: Fantasy; /* Apply Poppins font */
+        font-size: 40px;
+        font-weight: bold;
+        margin: 0.7cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+        animation: neon 1.5s ease-in-out infinite alternate;
+    }
+    h3 {
+        text-align: center;
+        font-family: Fantasy; /* Apply Poppins font */
+        font-size: 40px;
+        font-weight: bold;
+        color: black; /* White color */
+        margin-top: 0.5cm;
+        margin-bottom: 0cm;
+        text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+        animation: neon 1.5s ease-in-out infinite alternate;
+    }
+h6 {
+        text-align: center;
+        font-family: Fantasy; /* Apply Poppins font */
+        font-size: 13px;
+        font-weight: italic;
+        color: #fff; /* White color */
+        margin-top: 0cm;
+        margin-bottom: 0.5cm;
+        text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+        animation: neon 1.5s ease-in-out infinite alternate;
+    }
+    
+button {
+    display: block;
+    width: 2cm;
+    margin: 0.5cm;
+    padding: 10px;
+    font-size: 15px;
+    background-color: gray;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+  }
+
+  button:hover {
+    background-color: darkgray;
+  }
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+  

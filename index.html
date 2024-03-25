@@ -1,0 +1,5758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toggle Content</title>
+<link rel="stylesheet" href="/style.css"/>
+<style>
+  /* CSS styles for hidden content */
+  .hidden-content {
+    height: 0; /* Initially hide the content */
+    overflow: hidden; /* Hide overflowing content */
+    opacity: 0; /* Initially set opacity to 0 */
+    transition: opacity 0.3s ease, height 0s ease 0.3s; /* Smooth transition for opacity */
+  }
+
+  /* CSS styles for visible content */
+  .visible {
+    height: auto; /* Automatically adjust height to show content */
+    opacity: 1; /* Set opacity to 1 when visible */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  }
+
+  /* CSS styles for the toggle word */
+  .toggleWord {
+    cursor: pointer; /* Show pointer cursor on hover */
+    text-decoration: underline; /* Underline the word */
+    color: blue; /* Set the color to blue */
+  }
+
+  /* Keyframes animation for fading in */
+  @keyframes fadeIn {
+    from {
+      opacity: 0; /* Start with opacity 0 */
+    }
+    to {
+      opacity: 1; /* End with opacity 1 */
+    }
+  }
+
+  /* Apply animation to visible content */
+  .visible {
+    animation: fadeIn 0.3s ease; /* Use fadeIn animation when becoming visible */
+  }
+</style>
+</head>
+<body>
+    
+<h3>CodeRC</h3>
+
+<div class="nav">
+    
+<button onclick="scrollToWord('word1')" class="nav">Slip 01</button>
+<button onclick="scrollToWord('word2')" class="nav">Slip 02</button>
+<button onclick="scrollToWord('word3')" class="nav">Slip 03</button>
+<button onclick="scrollToWord('word4')" class="nav">Slip 04</button>
+<button onclick="scrollToWord('word5')" class="nav">Slip 05</button>
+<button onclick="scrollToWord('word6')" class="nav">Slip 06</button>
+<button onclick="scrollToWord('word7')" class="nav">Slip 07</button>
+<button onclick="scrollToWord('word8')" class="nav">Slip 08</button>
+<button onclick="scrollToWord('word9')" class="nav">Slip 09</button>
+<button onclick="scrollToWord('word10')" class="nav">Slip 10</button>
+<button onclick="scrollToWord('word11')" class="nav">Slip 11</button>
+<button onclick="scrollToWord('word12')" class="nav">Slip 12</button>
+<button onclick="scrollToWord('word13')" class="nav">Slip 13</button>
+<button onclick="scrollToWord('word14')" class="nav">Slip 14</button>
+<button onclick="scrollToWord('word15')" class="nav">Slip 15</button>
+<button onclick="scrollToWord('word16')" class="nav">Slip 16</button>
+<button onclick="scrollToWord('word17')" class="nav">Slip 17</button>
+<button onclick="scrollToWord('word18')" class="nav">Slip 18</button>
+<button onclick="scrollToWord('word19')" class="nav">Slip 19</button>
+<button onclick="scrollToWord('word20')" class="nav">Slip 20</button>
+<button onclick="scrollToWord('word21')" class="nav">Slip 21</button>
+<button onclick="scrollToWord('word22')" class="nav">Slip 22</button>
+<button onclick="scrollToWord('word23')" class="nav">Slip 23</button>
+<button onclick="scrollToWord('word24')" class="nav">Slip 24</button>
+<button onclick="scrollToWord('word25')" class="nav">Slip 25</button>
+
+</div>
+<hr>
+<!-- Visible content -->
+<h1><span id="word1">Slip 1</span></h1>
+<!-- Instructions for toggling content -->
+<div class="que-prompt">
+<p>Que. Implement a Binary search tree (BST) library (btree.h) with operations – create, insert, preorder,postorder,inorder. Write a menu 
+driven program that performs the above operations. "<span class="toggleWord" data-target="hiddenContent1">OPEN</span>"</p>
+</div>
+<!-- Hidden content -->
+<div class="code-area">
+<div id="hiddenContent1" class="hidden-content">
+  <button onclick="cc1()">Copy</button>
+  <pre id="id1">//btree.h
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct bst
+{
+    int data;
+    struct bst *lchild, *rchild;
+} node;
+int cnt = 0, leafcnt = 0, nleafcnt = 0;
+struct bst *create()
+{
+    struct bst *temp = (struct bst *)malloc(sizeof(struct bst));
+    temp -&gt;lchild = NULL;
+    temp -&gt;rchild = NULL;
+    return temp;
+}
+
+void insert(struct bst *r, struct bst *new1)
+{
+    if (new1 -&gt; data & lt; r -&gt; data)
+    {
+        if (r -&gt; lchild == NULL)
+            r -&gt;
+        lchild = new1;
+        else insert(r -&gt; lchild, new1);
+    }
+
+    if (new1 -&gt; data & gt; r -&gt; data)
+    {
+        if (r -&gt; rchild == NULL)
+            r -&gt;
+        rchild = new1;
+        else insert(r -&gt; rchild, new1);
+    }
+}
+void inorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp -&gt; lchild);
+        printf("%d\t", temp -&gt; data);
+        inorder(temp -&gt; rchild);
+    }
+}
+void postorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        postorder(temp -&gt; lchild);
+        postorder(temp -&gt; rchild);
+        printf("%d\t", temp -&gt; data);
+    }
+}
+void preorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        printf("%d\t", temp -&gt; data);
+        preorder(temp -&gt; lchild);
+        preorder(temp -&gt; rchild);
+    }
+}
+
+// program
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "btree.h"
+int main()
+{
+    int ch, n, i, value, cnt;
+    struct bst *newnode, *root, *temp;
+    root = NULL;
+    while (1)
+    {
+        printf("\n---Binary Search Tree---\n");
+        printf("1.Insert\n");
+        printf("2.Inorder Traversal (Recursive)\n");
+        printf("3.Postorder Traversal (Recursive)\n");
+        printf("4.Preorder Traversal (Recursive)\n");
+        printf("5.Exit\n");
+        printf("Enter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf("\nHow many nodes to create:");
+            scanf("%d", &n);
+            for (i = 0; i &lt; n; i++)
+            {
+                newnode = create();
+                printf("\nEnter the node data:");
+                scanf("%d", &newnode -&gt; data);
+                if (root == NULL)
+                    root = newnode;
+                else
+                    insert(root, newnode);
+            }
+            break;
+        case 2:
+            printf("\nInorder Traversal=");
+            inorder(root);
+            break;
+        case 3:
+            printf("\nPostorder Traversal=");
+            postorder(root);
+            break;
+        case 4:
+            printf("\nPreorder Traversal=");
+            preorder(root);
+            break;
+        case 5:
+            exit(0);
+        default:
+            printf("\nInvalid Choice\n");
+        }
+    }
+}
+</pre>
+</div>
+</div>
+<!-- Repeat the above structure for additional hidden content -->
+
+<div class="que-prompt">
+<p>Que. Write a C program that accepts the vertices and edges of a graph and stores it as an 
+adjacency matrix. Display the adjacency matrix. "<span class="toggleWord" data-target="hiddenContent2">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent2" class="hidden-content">
+  <button onclick="cc2()">Copy</button>
+  <pre id="id2">#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+void create(int a[10][10], int n)
+{
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+    for (int i = 0; i &lt; n; i++)
+    {
+        for (int j = 0; j &lt; n; j++)
+        {
+            a[i][j] = 0;
+            if (i != j)
+            {
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+                scanf("%d", &a[i][j]);
+            }
+        }
+    }
+}
+void display(int a[10][10], int n)
+{
+    printf("\nThe Matrix is: \n");
+    for (int i = 0; i &lt; n; i++)
+    {
+        for (int j = 0; j &lt; n; j++)
+        {
+            printf("%d\t", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+    int a[10][10], n;
+    printf("\nEnter the no. of vertex: ");
+    scanf("%d", &n);
+    create(a, n);
+    display(a, n);
+}
+</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word2">Slip 2</span></h1>
+<div class="que-prompt">
+<p>Q1. Write a C program for the implementation of Topological sorting. "<span class="toggleWord" data-target="hiddenContent3">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent3" class="hidden-content">
+  <button onclick="cc3()">Copy</button>
+  <pre id="id3">#include &lt;stdio.h&gt;
+
+int main()
+
+{
+
+    int i, j, k, n, a[10][10], indeg[10], flag[10], count = 0;
+
+    printf("Enter the no of vertices:\n");
+
+    scanf("%d", &n);
+
+    printf("Enter the adjacenecy matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("Enter row %d\n", i + 1);
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &a[i][j]);
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        indeg[i] = 0;
+
+        flag[i] = 0;
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            indeg[i] = indeg[i] + a[j][i];
+
+    printf("\n The topological order is:");
+
+    while (count &lt; n)
+
+    {
+
+        for (k = 0; k &lt; n; k++)
+
+        {
+
+            if ((indeg[k] == 0) && (flag[k] == 0))
+
+            {
+
+                printf("%d", (k + 1));
+
+                flag[k] = 1;
+
+            }
+
+            for (i = 0; i &lt; n; i++)
+
+            {
+
+                if (a[i][k] == 1)
+
+                    indeg[k]--;
+
+            }
+
+        }
+
+        count++;
+
+    }
+
+    return 0;
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph and stores it as an adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent4">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent4" class="hidden-content">
+  <button onclick="cc4()">Copy</button>
+  <pre id="id4">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<hr> 
+<h1><span id="word3">Slip 3</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the Implementation of Prim’s Minimum spanning tree algorithm. "<span class="toggleWord" data-target="hiddenContent5">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent5" class="hidden-content">
+  <button onclick="cc5()">Copy</button>
+  <pre id="id5">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define infinity 9999
+
+#define MAX 20
+
+int G[MAX][MAX], spanning[MAX][MAX], n;
+
+int prims();
+
+int main()
+
+{
+
+    int i, j, total_cost;
+
+    printf("Enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    total_cost = prims();
+
+    printf("\nspanning tree matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("\n");
+
+        for (j = 0; j &lt; n; j++)
+
+            printf("%d\t", spanning[i][j]);
+
+    }
+
+    printf("\n\nTotal cost of spanning tree=%d", total_cost);
+
+    return 0;
+
+}
+
+int prims()
+
+{
+
+    int cost[MAX][MAX];
+
+    int u, v, min_distance, distance[MAX], from[MAX];
+
+    int visited[MAX], no_of_edges, i, min_cost, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+        {
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = infinity;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+            spanning[i][j] = 0;
+
+        }
+
+    distance[0] = 0;
+
+    visited[0] = 1;
+
+    for (i = 1; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[0][i];
+
+        from[i] = 0;
+
+        visited[i] = 0;
+
+    }
+
+    min_cost = 0;
+
+    no_of_edges = n - 1;
+
+    while (no_of_edges &gt; 0)
+
+    {
+
+        min_distance = infinity;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[i] == 0 && distance[i] &lt; min_distance)
+
+            {
+
+                v = i;
+
+                min_distance = distance[i];
+
+            }
+
+        u = from[v];
+
+        spanning[u][v] = distance[v];
+
+        spanning[v][u] = distance[v];
+
+        no_of_edges--;
+
+        visited[v] = 1;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[1] == 0 && cost[i][v] &lt; distance[i])
+
+            {
+
+                distance[i] = cost[i][v];
+
+                from[i] = v;
+
+            }
+
+        min_cost = min_cost + cost[u][v];
+
+    }
+
+    return (min_cost);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph and stores it as an adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent6">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent6" class="hidden-content">
+  <button onclick="cc6()">Copy</button>
+  <pre id="id6">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<hr> 
+<h1><span id="word4">Slip 4</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program that accepts the vertices and edges of a graph. Create adjacency list. "<span class="toggleWord" data-target="hiddenContent7">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent7" class="hidden-content">
+  <button onclick="cc7()">Copy</button>
+  <pre id="id7">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+typedef struct node
+
+{
+
+    int vertex;
+
+    struct node *next;
+
+} NODE;
+
+NODE *list[10];
+
+int create(int a[10][10], int n)
+
+{
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void clist(int a[10][10], int n)
+
+{
+
+    NODE *temp, *newnode;
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        list[i] = NULL;
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            if (a[i][j] == 1)
+
+            {
+
+                newnode = (NODE *)malloc(sizeof(NODE));
+
+                newnode-&gt;vertex = j + 1;
+
+                newnode-&gt;next = NULL;
+
+                if (list[i] == NULL)
+
+                    list[i] = temp = newnode;
+
+                else
+
+                    temp-&gt;next = newnode;
+
+                temp = newnode;
+
+            }
+
+        }
+
+    }
+
+}
+
+void dlist(int n)
+
+{
+
+    NODE *temp;
+
+    printf("\nThe Adjacency list is: ");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        printf("v%d--&gt;", i + 1);
+
+        temp = list[i];
+
+        while (temp)
+
+        {
+
+            printf("v%d--&gt;", temp-&gt;vertex);
+
+            temp = temp-&gt;next;
+
+        }
+
+        printf("NULL\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    clist(a, n);
+
+    dlist(n);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2.Write a C program for the implementation of Topological sorting"<span class="toggleWord" data-target="hiddenContent8">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent8" class="hidden-content">
+  <button onclick="cc8()">Copy</button>
+  <pre id="id8">#include &lt;stdio.h&gt;
+
+int main()
+
+{
+
+    int i, j, k, n, a[10][10], indeg[10], flag[10], count = 0;
+
+    printf("Enter the no of vertices:\n");
+
+    scanf("%d", &n);
+
+    printf("Enter the adjacenecy matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("Enter row %d\n", i + 1);
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &a[i][j]);
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        indeg[i] = 0;
+
+        flag[i] = 0;
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            indeg[i] = indeg[i] + a[j][i];
+
+    printf("\n The topological order is:");
+
+    while (count &lt; n)
+
+    {
+
+        for (k = 0; k &lt; n; k++)
+
+        {
+
+            if ((indeg[k] == 0) && (flag[k] == 0))
+
+            {
+
+                printf("%d", (k + 1));
+
+                flag[k] = 1;
+
+            }
+
+            for (i = 0; i &lt; n; i++)
+
+            {
+
+                if (a[i][k] == 1)
+
+                    indeg[k]--;
+
+            }
+
+        }
+
+        count++;
+
+    }
+
+    return 0;
+
+}</pre>
+</div>
+</div>
+<hr> 
+<h1><span id="word5">Slip 5</span></h1>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent9">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent9" class="hidden-content">
+  <button onclick="cc9()">Copy</button>
+  <pre id="id9">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>QUE. Write a C program which uses Binary search tree library and displays nodes at each level, 
+count of node at each level."<span class="toggleWord" data-target="hiddenContent10">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent10" class="hidden-content">
+  <button onclick="cc10()">Copy</button>
+  <pre id="id10">//btree.h
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct bst
+{
+    int data;
+    struct bst *lchild, *rchild;
+} node;
+int cnt = 0, leafcnt = 0, nleafcnt = 0;
+struct bst *create()
+{
+    struct bst *temp = (struct bst *)malloc(sizeof(struct bst));
+    temp -&gt;lchild = NULL;
+    temp -&gt;rchild = NULL;
+    return temp;
+}
+
+void insert(struct bst *r, struct bst *new1)
+{
+    if (new1 -&gt; data & lt; r -&gt; data)
+    {
+        if (r -&gt; lchild == NULL)
+            r -&gt;
+        lchild = new1;
+        else insert(r -&gt; lchild, new1);
+    }
+
+    if (new1 -&gt; data & gt; r -&gt; data)
+    {
+        if (r -&gt; rchild == NULL)
+            r -&gt;
+        rchild = new1;
+        else insert(r -&gt; rchild, new1);
+    }
+}
+void inorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp -&gt; lchild);
+        printf("%d\t", temp -&gt; data);
+        inorder(temp -&gt; rchild);
+    }
+}
+void postorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        postorder(temp -&gt; lchild);
+        postorder(temp -&gt; rchild);
+        printf("%d\t", temp -&gt; data);
+    }
+}
+void preorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        printf("%d\t", temp -&gt; data);
+        preorder(temp -&gt; lchild);
+        preorder(temp -&gt; rchild);
+    }
+}
+
+// program
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "btree.h"
+int main()
+{
+    int ch, n, i, value, cnt;
+    struct bst *newnode, *root, *temp;
+    root = NULL;
+    while (1)
+    {
+        printf("\n---Binary Search Tree---\n");
+        printf("1.Insert\n");
+        printf("2.Inorder Traversal (Recursive)\n");
+        printf("3.Postorder Traversal (Recursive)\n");
+        printf("4.Preorder Traversal (Recursive)\n");
+        printf("5.Exit\n");
+        printf("Enter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf("\nHow many nodes to create:");
+            scanf("%d", &n);
+            for (i = 0; i &lt; n; i++)
+            {
+                newnode = create();
+                printf("\nEnter the node data:");
+                scanf("%d", &newnode -&gt; data);
+                if (root == NULL)
+                    root = newnode;
+                else
+                    insert(root, newnode);
+            }
+            break;
+        case 2:
+            printf("\nInorder Traversal=");
+            inorder(root);
+            break;
+        case 3:
+            printf("\nPostorder Traversal=");
+            postorder(root);
+            break;
+        case 4:
+            printf("\nPreorder Traversal=");
+            preorder(root);
+            break;
+        case 5:
+            exit(0);
+        default:
+            printf("\nInvalid Choice\n");
+        }
+    }
+}
+</pre>
+</div>
+</div>
+<hr> 
+<h1><span id="word6">Slip 6</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the Implementation of Prim’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent11">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent11" class="hidden-content">
+  <button onclick="cc11()">Copy</button>
+  <pre id="id11">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define infinity 9999
+
+#define MAX 20
+
+int G[MAX][MAX], spanning[MAX][MAX], n;
+
+int prims();
+
+int main()
+
+{
+
+    int i, j, total_cost;
+
+    printf("Enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    total_cost = prims();
+
+    printf("\nspanning tree matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("\n");
+
+        for (j = 0; j &lt; n; j++)
+
+            printf("%d\t", spanning[i][j]);
+
+    }
+
+    printf("\n\nTotal cost of spanning tree=%d", total_cost);
+
+    return 0;
+
+}
+
+int prims()
+
+{
+
+    int cost[MAX][MAX];
+
+    int u, v, min_distance, distance[MAX], from[MAX];
+
+    int visited[MAX], no_of_edges, i, min_cost, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+        {
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = infinity;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+            spanning[i][j] = 0;
+
+        }
+
+    distance[0] = 0;
+
+    visited[0] = 1;
+
+    for (i = 1; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[0][i];
+
+        from[i] = 0;
+
+        visited[i] = 0;
+
+    }
+
+    min_cost = 0;
+
+    no_of_edges = n - 1;
+
+    while (no_of_edges &gt; 0)
+
+    {
+
+        min_distance = infinity;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[i] == 0 && distance[i] &lt; min_distance)
+
+            {
+
+                v = i;
+
+                min_distance = distance[i];
+
+            }
+
+        u = from[v];
+
+        spanning[u][v] = distance[v];
+
+        spanning[v][u] = distance[v];
+
+        no_of_edges--;
+
+        visited[v] = 1;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[1] == 0 && cost[i][v] &lt; distance[i])
+
+            {
+
+                distance[i] = cost[i][v];
+
+                from[i] = v;
+
+            }
+
+        min_cost = min_cost + cost[u][v];
+
+    }
+
+    return (min_cost);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph and stores it as a adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent12">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent12" class="hidden-content">
+  <button onclick="cc12()">Copy</button>
+  <pre id="id12">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word7">Slip 7</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Floyd Warshall’s algorithm for finding all pairs shortest path using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent13">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent13" class="hidden-content">
+  <button onclick="cc13()">Copy</button>
+  <pre id="id13">#include &lt;stdio.h&gt;
+#define nV 4
+#define INF 999
+void printMatrix(int matrix[][nV]);
+void floydWarshall(int graph[][nV])
+{
+int matrix[nV][nV],i,j,k;
+for(i=0;i&lt;nV;i++)
+for(j=0;j&lt;nV;j++)
+matrix[i][j]=graph[i][j];
+for(k=0;k&lt;nV;k++)
+{for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][k]+matrix[k][j]&lt;matrix[i][j])
+matrix[i][j]=matrix[i][k]+matrix[k][j];
+}
+}
+}
+printMatrix(matrix);
+}
+void printMatrix(int matrix[][nV])
+{
+int i,j;
+for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][j]==INF)
+printf("%4s",INF);
+else
+printf("%4d",matrix[i][j]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int graph[nV][nV]={{0,3,INF,5},{2,0,INF,4},{INF,1,0,INF},{INF,INF,2,0}};
+floydWarshall(graph);
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent14">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent14" class="hidden-content">
+  <button onclick="cc14()">Copy</button>
+  <pre id="id14">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word8">Slip 8</span></h1>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent15">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent15" class="hidden-content">
+  <button onclick="cc15()">Copy</button>
+  <pre id="15">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the Implementation of Prim’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent16">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent16" class="hidden-content">
+  <button onclick="cc16()">Copy</button>
+  <pre id="id16">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define infinity 9999
+
+#define MAX 20
+
+int G[MAX][MAX], spanning[MAX][MAX], n;
+
+int prims();
+
+int main()
+
+{
+
+    int i, j, total_cost;
+
+    printf("Enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    total_cost = prims();
+
+    printf("\nspanning tree matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("\n");
+
+        for (j = 0; j &lt; n; j++)
+
+            printf("%d\t", spanning[i][j]);
+
+    }
+
+    printf("\n\nTotal cost of spanning tree=%d", total_cost);
+
+    return 0;
+
+}
+
+int prims()
+
+{
+
+    int cost[MAX][MAX];
+
+    int u, v, min_distance, distance[MAX], from[MAX];
+
+    int visited[MAX], no_of_edges, i, min_cost, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+        {
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = infinity;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+            spanning[i][j] = 0;
+
+        }
+
+    distance[0] = 0;
+
+    visited[0] = 1;
+
+    for (i = 1; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[0][i];
+
+        from[i] = 0;
+
+        visited[i] = 0;
+
+    }
+
+    min_cost = 0;
+
+    no_of_edges = n - 1;
+
+    while (no_of_edges &gt; 0)
+
+    {
+
+        min_distance = infinity;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[i] == 0 && distance[i] &lt; min_distance)
+
+            {
+
+                v = i;
+
+                min_distance = distance[i];
+
+            }
+
+        u = from[v];
+
+        spanning[u][v] = distance[v];
+
+        spanning[v][u] = distance[v];
+
+        no_of_edges--;
+
+        visited[v] = 1;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[1] == 0 && cost[i][v] &lt; distance[i])
+
+            {
+
+                distance[i] = cost[i][v];
+
+                from[i] = v;
+
+            }
+
+        min_cost = min_cost + cost[u][v];
+
+    }
+
+    return (min_cost);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word9">Slip 9</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program that accepts the vertices and edges of a graph. Create adjacency list."<span class="toggleWord" data-target="hiddenContent17">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent17" class="hidden-content">
+  <button onclick="cc17()">Copy</button>
+  <pre id="id17">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+typedef struct node
+
+{
+
+    int vertex;
+
+    struct node *next;
+
+} NODE;
+
+NODE *list[10];
+
+int create(int a[10][10], int n)
+
+{
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void clist(int a[10][10], int n)
+
+{
+
+    NODE *temp, *newnode;
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        list[i] = NULL;
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            if (a[i][j] == 1)
+
+            {
+
+                newnode = (NODE *)malloc(sizeof(NODE));
+
+                newnode-&gt;vertex = j + 1;
+
+                newnode-&gt;next = NULL;
+
+                if (list[i] == NULL)
+
+                    list[i] = temp = newnode;
+
+                else
+
+                    temp-&gt;next = newnode;
+
+                temp = newnode;
+
+            }
+
+        }
+
+    }
+
+}
+
+void dlist(int n)
+
+{
+
+    NODE *temp;
+
+    printf("\nThe Adjacency list is: ");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        printf("v%d--&gt;", i + 1);
+
+        temp = list[i];
+
+        while (temp)
+
+        {
+
+            printf("v%d--&gt;", temp-&gt;vertex);
+
+            temp = temp-&gt;next;
+
+        }
+
+        printf("NULL\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    clist(a, n);
+
+    dlist(n);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph and store it as an 
+adjacency matrix. Implement function to traverse the graph using Depth First Search (BFS) 
+traversal."<span class="toggleWord" data-target="hiddenContent18">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent18" class="hidden-content">
+  <button onclick="cc18()">Copy</button>
+  <pre id="id18">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+typedef struct node
+
+{
+
+    int vertex;
+
+    struct node *next;
+
+} NODE;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+void recdfs(int a[20][20], int n, int v)
+
+{
+
+    static int visited[20] = {0};
+
+    visited[v] = 1;
+
+    printf("v%d\t", v + 1);
+
+    for (int w = 0; w &lt; n; w++)
+
+    {
+
+        if ((a[v][w] == 1) && (visited[w] == 0))
+
+            recdfs(a, n, w);
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+    printf("\nThe Depth First Search Traversal is: \n");
+
+    recdfs(a, n, 0);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word10">Slip 10</span></h1>
+<div class="que-prompt">
+<p>QUE .Implement a Binary search tree (BST) library (btree.h) with operations – create, insert, 
+inorder. Write a menu driven program that performs the above operations."<span class="toggleWord" data-target="hiddenContent19">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent19" class="hidden-content">
+  <button onclick="cc19()">Copy</button>
+  <pre id="id19">//btree.h
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct bst
+{
+    int data;
+    struct bst *lchild, *rchild;
+} node;
+int cnt = 0, leafcnt = 0, nleafcnt = 0;
+struct bst *create()
+{
+    struct bst *temp = (struct bst *)malloc(sizeof(struct bst));
+    temp -&gt;lchild = NULL;
+    temp -&gt;rchild = NULL;
+    return temp;
+}
+
+void insert(struct bst *r, struct bst *new1)
+{
+    if (new1 -&gt; data & lt; r -&gt; data)
+    {
+        if (r -&gt; lchild == NULL)
+            r -&gt;
+        lchild = new1;
+        else insert(r -&gt; lchild, new1);
+    }
+
+    if (new1 -&gt; data & gt; r -&gt; data)
+    {
+        if (r -&gt; rchild == NULL)
+            r -&gt;
+        rchild = new1;
+        else insert(r -&gt; rchild, new1);
+    }
+}
+void inorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp -&gt; lchild);
+        printf("%d\t", temp -&gt; data);
+        inorder(temp -&gt; rchild);
+    }
+}
+void postorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        postorder(temp -&gt; lchild);
+        postorder(temp -&gt; rchild);
+        printf("%d\t", temp -&gt; data);
+    }
+}
+void preorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        printf("%d\t", temp -&gt; data);
+        preorder(temp -&gt; lchild);
+        preorder(temp -&gt; rchild);
+    }
+}
+
+// program
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "btree.h"
+int main()
+{
+    int ch, n, i, value, cnt;
+    struct bst *newnode, *root, *temp;
+    root = NULL;
+    while (1)
+    {
+        printf("\n---Binary Search Tree---\n");
+        printf("1.Insert\n");
+        printf("2.Inorder Traversal (Recursive)\n");
+        printf("3.Postorder Traversal (Recursive)\n");
+        printf("4.Preorder Traversal (Recursive)\n");
+        printf("5.Exit\n");
+        printf("Enter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf("\nHow many nodes to create:");
+            scanf("%d", &n);
+            for (i = 0; i &lt; n; i++)
+            {
+                newnode = create();
+                printf("\nEnter the node data:");
+                scanf("%d", &newnode -&gt; data);
+                if (root == NULL)
+                    root = newnode;
+                else
+                    insert(root, newnode);
+            }
+            break;
+        case 2:
+            printf("\nInorder Traversal=");
+            inorder(root);
+            break;
+        case 3:
+            printf("\nPostorder Traversal=");
+            postorder(root);
+            break;
+        case 4:
+            printf("\nPreorder Traversal=");
+            preorder(root);
+            break;
+        case 5:
+            exit(0);
+        default:
+            printf("\nInvalid Choice\n");
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph. Create adjacency list."<span class="toggleWord" data-target="hiddenContent20">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent20" class="hidden-content">
+  <button onclick="cc20()">Copy</button>
+  <pre id="id20">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+typedef struct node
+
+{
+
+    int vertex;
+
+    struct node *next;
+
+} NODE;
+
+NODE *list[10];
+
+int create(int a[10][10], int n)
+
+{
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void clist(int a[10][10], int n)
+
+{
+
+    NODE *temp, *newnode;
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        list[i] = NULL;
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            if (a[i][j] == 1)
+
+            {
+
+                newnode = (NODE *)malloc(sizeof(NODE));
+
+                newnode-&gt;vertex = j + 1;
+
+                newnode-&gt;next = NULL;
+
+                if (list[i] == NULL)
+
+                    list[i] = temp = newnode;
+
+                else
+
+                    temp-&gt;next = newnode;
+
+                temp = newnode;
+
+            }
+
+        }
+
+    }
+
+}
+
+void dlist(int n)
+
+{
+
+    NODE *temp;
+
+    printf("\nThe Adjacency list is: ");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        printf("v%d--&gt;", i + 1);
+
+        temp = list[i];
+
+        while (temp)
+
+        {
+
+            printf("v%d--&gt;", temp-&gt;vertex);
+
+            temp = temp-&gt;next;
+
+        }
+
+        printf("NULL\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    clist(a, n);
+
+    dlist(n);
+
+}</pre>
+</div>
+</div>
+<hr> 
+<h1><span id="word11">Slip 11</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Floyd Warshall’s algorithm for finding all pairs shortest path using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent21">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent21" class="hidden-content">
+  <button onclick="cc21()">Copy</button>
+  <pre id="id21">#include &lt;stdio.h&gt;
+#define nV 4
+#define INF 999
+void printMatrix(int matrix[][nV]);
+void floydWarshall(int graph[][nV])
+{
+int matrix[nV][nV],i,j,k;
+for(i=0;i&lt;nV;i++)
+for(j=0;j&lt;nV;j++)
+matrix[i][j]=graph[i][j];
+for(k=0;k&lt;nV;k++)
+{for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][k]+matrix[k][j]&lt;matrix[i][j])
+matrix[i][j]=matrix[i][k]+matrix[k][j];
+}
+}
+}
+printMatrix(matrix);
+}
+void printMatrix(int matrix[][nV])
+{
+int i,j;
+for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][j]==INF)
+printf("%4s",INF);
+else
+printf("%4d",matrix[i][j]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int graph[nV][nV]={{0,3,INF,5},{2,0,INF,4},{INF,1,0,INF},{INF,INF,2,0}};
+floydWarshall(graph);
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2.Write a C program that accepts the vertices and edges of a graph and stores it as an adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent22">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent22" class="hidden-content">
+  <button onclick="cc22()">Copy</button>
+  <pre id="id22">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word12">Slip 12</span></h1>
+<div class="que-prompt">
+<p>QUE .Implement a Binary search tree (BST) library (btree.h) with operations – create, insert, 
+inorder. Write a menu driven program that performs the above operations."<span class="toggleWord" data-target="hiddenContent23">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent23" class="hidden-content">
+  <button onclick="cc23()">Copy</button>
+  <pre id="id23">//btree.h
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct bst
+{
+    int data;
+    struct bst *lchild, *rchild;
+} node;
+int cnt = 0, leafcnt = 0, nleafcnt = 0;
+struct bst *create()
+{
+    struct bst *temp = (struct bst *)malloc(sizeof(struct bst));
+    temp -&gt;lchild = NULL;
+    temp -&gt;rchild = NULL;
+    return temp;
+}
+
+void insert(struct bst *r, struct bst *new1)
+{
+    if (new1 -&gt; data & lt; r -&gt; data)
+    {
+        if (r -&gt; lchild == NULL)
+            r -&gt;
+        lchild = new1;
+        else insert(r -&gt; lchild, new1);
+    }
+
+    if (new1 -&gt; data & gt; r -&gt; data)
+    {
+        if (r -&gt; rchild == NULL)
+            r -&gt;
+        rchild = new1;
+        else insert(r -&gt; rchild, new1);
+    }
+}
+void inorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp -&gt; lchild);
+        printf("%d\t", temp -&gt; data);
+        inorder(temp -&gt; rchild);
+    }
+}
+void postorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        postorder(temp -&gt; lchild);
+        postorder(temp -&gt; rchild);
+        printf("%d\t", temp -&gt; data);
+    }
+}
+void preorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        printf("%d\t", temp -&gt; data);
+        preorder(temp -&gt; lchild);
+        preorder(temp -&gt; rchild);
+    }
+}
+
+// program
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "btree.h"
+int main()
+{
+    int ch, n, i, value, cnt;
+    struct bst *newnode, *root, *temp;
+    root = NULL;
+    while (1)
+    {
+        printf("\n---Binary Search Tree---\n");
+        printf("1.Insert\n");
+        printf("2.Inorder Traversal (Recursive)\n");
+        printf("3.Postorder Traversal (Recursive)\n");
+        printf("4.Preorder Traversal (Recursive)\n");
+        printf("5.Exit\n");
+        printf("Enter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf("\nHow many nodes to create:");
+            scanf("%d", &n);
+            for (i = 0; i &lt; n; i++)
+            {
+                newnode = create();
+                printf("\nEnter the node data:");
+                scanf("%d", &newnode -&gt; data);
+                if (root == NULL)
+                    root = newnode;
+                else
+                    insert(root, newnode);
+            }
+            break;
+        case 2:
+            printf("\nInorder Traversal=");
+            inorder(root);
+            break;
+        case 3:
+            printf("\nPostorder Traversal=");
+            postorder(root);
+            break;
+        case 4:
+            printf("\nPreorder Traversal=");
+            preorder(root);
+            break;
+        case 5:
+            exit(0);
+        default:
+            printf("\nInvalid Choice\n");
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>QUE. Write a C program for the implementation of Topological sorting."<span class="toggleWord" data-target="hiddenContent24">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent24" class="hidden-content">
+  <button onclick="cc24()">Copy</button>
+  <pre id="id24">#include &lt;stdio.h&gt;
+
+int main()
+
+{
+
+    int i, j, k, n, a[10][10], indeg[10], flag[10], count = 0;
+
+    printf("Enter the no of vertices:\n");
+
+    scanf("%d", &n);
+
+    printf("Enter the adjacenecy matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("Enter row %d\n", i + 1);
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &a[i][j]);
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        indeg[i] = 0;
+
+        flag[i] = 0;
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            indeg[i] = indeg[i] + a[j][i];
+
+    printf("\n The topological order is:");
+
+    while (count &lt; n)
+
+    {
+
+        for (k = 0; k &lt; n; k++)
+
+        {
+
+            if ((indeg[k] == 0) && (flag[k] == 0))
+
+            {
+
+                printf("%d", (k + 1));
+
+                flag[k] = 1;
+
+            }
+
+            for (i = 0; i &lt; n; i++)
+
+            {
+
+                if (a[i][k] == 1)
+
+                    indeg[k]--;
+
+            }
+
+        }
+
+        count++;
+
+    }
+
+    return 0;
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word13">Slip 13</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the Implementation of Kruskal’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent25">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent25" class="hidden-content">
+  <button onclick="cc25()">Copy</button>
+  <pre id="id25">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+int i, j, k, a, b, u, v, n, ne = 1;
+
+int min, mincost = 0, cost[9][9], parent[9];
+
+int find(int);
+
+int uni(int, int);
+
+void main()
+
+{
+
+    printf("\n\timplementation of kruskal's algorithm\n");
+
+    printf("\nenter the no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nenter the cost adjacency matrix:\n");
+
+    for (i = 1; i &lt;= n; i++)
+
+    {
+
+        for (j = 1; j &lt;= n; j++)
+
+        {
+
+            scanf("%d", &cost[i][j]);
+
+            if (cost[i][j] == 0)
+
+                cost[i][j] = 999;
+
+        }
+
+    }
+
+    printf("the edges of minimum cost spanninf tree are\n");
+
+    while (ne &lt; n)
+
+    {
+
+        for (i = 1, min = 999; i &lt;= n; i++)
+
+        {
+
+            for (j = 1; j &lt;= n; j++)
+
+            {
+
+                if (cost[i][j] &lt; min)
+
+                {
+
+                    min = cost[i][j];
+
+                    a = u = i;
+
+                    b = v = j;
+
+                }
+
+            }
+
+        }
+
+        u = find(u);
+
+        v = find(v);
+
+        if (uni(u, v))
+
+        {
+
+            printf("%d edges (%d,%d)=%d\n", ne++, a, b, min);
+
+            mincost += min;
+
+        }
+
+        cost[a][b] = cost[b][a] = 999;
+
+    }
+
+    printf("\n\tminimum cost+%d\n", mincost);
+
+}
+
+int find(int i)
+
+{
+
+    while (parent[i])
+
+        i = parent[i];
+
+    return i;
+
+}
+
+int uni(int i, int j)
+
+{
+
+    if (1 != j)
+
+    {
+
+        parent[j] = i;
+
+        return 1;
+
+    }
+
+    return 0;
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph and store it as an adjacency matrix. Implement function to traverse the graph using Breadth First Search (BFS) traversal."<span class="toggleWord" data-target="hiddenContent26">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent26" class="hidden-content">
+  <button onclick="cc26()">Copy</button>
+  <pre id="id26">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define MAXSIZE 20
+
+typedef struct
+
+{
+
+    int data[MAXSIZE];
+
+    int front, rear;
+
+} QUEUE;
+
+void initq(QUEUE *pq)
+
+{
+
+    pq-&gt;front = pq-&gt;rear = -1;
+
+}
+
+void addq(QUEUE *pq, int n)
+
+{
+
+    pq-&gt;data[++pq-&gt;rear] = n;
+
+}
+
+int removeq(QUEUE *pq)
+
+{
+
+    return pq-&gt;data[++pq-&gt;front];
+
+}
+
+int isempty(QUEUE *pq)
+
+{
+
+    return (pq-&gt;front == pq-&gt;rear);
+
+}
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void bfs(int a[10][10], int n)
+
+{
+
+    int v = 0;
+
+    int visited[20] = {0};
+
+    QUEUE q;
+
+    initq(&q);
+
+    printf("\nThe Breadth First Traversal is:\n");
+
+    visited[v] = 1;
+
+    addq(&q, v);
+
+    while (!isempty(&q))
+
+    {
+
+        v = removeq(&q);
+
+        printf("v%d\t", v + 1);
+
+        for (int w = 0; w &lt; n; w++)
+
+        {
+
+            if ((a[v][w] == 1) && (visited[w] == 0))
+
+            {
+
+                addq(&q, w);
+
+                visited[w] = 1;
+
+            }
+
+        }
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    bfs(a, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word14">Slip 14</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Floyd Warshall’s algorithm for finding all pairs shortest path using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent27">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent27" class="hidden-content">
+  <button onclick="cc27()">Copy</button>
+  <pre id="id27">#include &lt;stdio.h&gt;
+#define nV 4
+#define INF 999
+void printMatrix(int matrix[][nV]);
+void floydWarshall(int graph[][nV])
+{
+int matrix[nV][nV],i,j,k;
+for(i=0;i&lt;nV;i++)
+for(j=0;j&lt;nV;j++)
+matrix[i][j]=graph[i][j];
+for(k=0;k&lt;nV;k++)
+{for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][k]+matrix[k][j]&lt;matrix[i][j])
+matrix[i][j]=matrix[i][k]+matrix[k][j];
+}
+}
+}
+printMatrix(matrix);
+}
+void printMatrix(int matrix[][nV])
+{
+int i,j;
+for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][j]==INF)
+printf("%4s",INF);
+else
+printf("%4d",matrix[i][j]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int graph[nV][nV]={{0,3,INF,5},{2,0,INF,4},{INF,1,0,INF},{INF,INF,2,0}};
+floydWarshall(graph);
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q2. Write a menu driven program to implement hash table using array (insert, search, display). 
+Use any of the above-mentioned hash functions. In case of collision apply linear probing."<span class="toggleWord" data-target="hiddenContent28">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent28" class="hidden-content">
+  <button onclick="cc28()">Copy</button>
+  <pre="id28">#include&lt;stdio.h&gt;
+int hf(int key,int i)
+{
+return (key%10+i)%10;
+}
+void insert(int HT[10],int key)
+{
+int i,index;
+for(i=0;i&lt;10;i++)
+{
+index=hf(key,i);
+if(HT[index]==-1)
+{
+HT[index]=key;
+return;
+}
+}printf("\nCould not insert key %d",key);
+}
+int search(int HT[10],int key)
+{
+int i,index;
+for(i=0;i&lt;10;i++)
+{
+index=hf(key,i);
+if(HT[index]==key)
+return index;
+}
+return -1;
+}
+void delete(int HT[10],int key)
+{
+int index;
+index=search(HT,key);
+if(index==-1)
+printf("\n %d key not found",key);
+else
+HT[index]=-1;
+}
+void showTable(int HT[10])
+{
+int i;
+for(i=0;i&lt;10;i++)
+printf("%d[%d]\n",i,HT[i]);
+}
+int main()
+{
+int HT[10],choice,key,index,i;
+for(i=0;i&lt;10;i++)
+HT[i]=-1;
+do
+{
+printf("\n1:Insert\n2:Search\n3:Delete\n4:Exit\n\nEnter your choice: ");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+printf("\nEnter the key to be inserted: ");
+scanf("%d",&key);
+insert(HT,key);
+showTable(HT);
+break;
+case 2:
+printf("\nEnter the key to be Searched: ");
+scanf("%d",&key);
+index=search(HT,key);
+if(index==-1)
+printf("\n %d not found",key);
+else
+printf("\n %d found at position %d",key,index);
+break;
+case 3:
+printf("\nEnter the key to be Deleted: ");
+scanf("%d",&key);
+delete(HT,key);
+showTable(HT);
+break;
+}
+}while(choice!=4);
+return 0;
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word15">Slip 15</span></h1>
+<div class="que-prompt">
+<p>Q 1.Write a C program for the Implementation of Prim’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent29">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent29" class="hidden-content">
+  <button onclick="cc29()">Copy</button>
+  <pre id="id29">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define infinity 9999
+
+#define MAX 20
+
+int G[MAX][MAX], spanning[MAX][MAX], n;
+
+int prims();
+
+int main()
+
+{
+
+    int i, j, total_cost;
+
+    printf("Enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    total_cost = prims();
+
+    printf("\nspanning tree matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("\n");
+
+        for (j = 0; j &lt; n; j++)
+
+            printf("%d\t", spanning[i][j]);
+
+    }
+
+    printf("\n\nTotal cost of spanning tree=%d", total_cost);
+
+    return 0;
+
+}
+
+int prims()
+
+{
+
+    int cost[MAX][MAX];
+
+    int u, v, min_distance, distance[MAX], from[MAX];
+
+    int visited[MAX], no_of_edges, i, min_cost, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+        {
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = infinity;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+            spanning[i][j] = 0;
+
+        }
+
+    distance[0] = 0;
+
+    visited[0] = 1;
+
+    for (i = 1; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[0][i];
+
+        from[i] = 0;
+
+        visited[i] = 0;
+
+    }
+
+    min_cost = 0;
+
+    no_of_edges = n - 1;
+
+    while (no_of_edges &gt; 0)
+
+    {
+
+        min_distance = infinity;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[i] == 0 && distance[i] &lt; min_distance)
+
+            {
+
+                v = i;
+
+                min_distance = distance[i];
+
+            }
+
+        u = from[v];
+
+        spanning[u][v] = distance[v];
+
+        spanning[v][u] = distance[v];
+
+        no_of_edges--;
+
+        visited[v] = 1;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[1] == 0 && cost[i][v] &lt; distance[i])
+
+            {
+
+                distance[i] = cost[i][v];
+
+                from[i] = v;
+
+            }
+
+        min_cost = min_cost + cost[u][v];
+
+    }
+
+    return (min_cost);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program for the implementation of Dijkstra’s shortest path algorithm for finding shortest path from a given source vertex using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent30">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent30" class="hidden-content">
+  <button onclick="cc30()">Copy</button>
+  <pre id="id30">#include &lt;stdio.h&gt;
+
+#define INFINITY 9999
+
+#define MAX 10
+
+void dijkstra(int G[MAX][MAX], int n, int startnode);
+
+int main()
+
+{
+
+    int G[MAX][MAX], i, j, n, u;
+
+    printf("enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nenter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    printf("\nenter the starting node:");
+
+    scanf("%d", &u);
+
+    dijkstra(G, n, u);
+
+    return 0;
+
+}
+
+void dijkstra(int G[MAX][MAX], int n, int startnode)
+
+{
+
+    int cost[MAX][MAX], distance[MAX], pred[MAX];
+
+    int visited[MAX], count, mindistance, nextnode, i, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = INFINITY;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[startnode][i];
+
+        pred[i] = startnode;
+
+        visited[i] = 0;
+
+    }
+
+    distance[startnode] = 0;
+
+    visited[startnode] = 1;
+
+    count = 1;
+
+    while (count &lt; n - 1)
+
+    {
+
+        mindistance = INFINITY;
+
+        for (i = 0; i &lt; n; i++)
+
+            if (distance[i] &lt; mindistance && !visited[i])
+
+            {
+
+                mindistance = distance[i];
+
+                nextnode = i;
+
+            }
+
+        visited[nextnode] = 1;
+
+        for (i = 0; i &lt; n; i++)
+
+            if (!visited[i])
+
+                if (mindistance + cost[nextnode][i] &lt; distance[i])
+
+                {
+
+                    distance[i] = mindistance + cost[nextnode][i];
+
+                    pred[i] = nextnode;
+
+                }
+
+        count++;
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+        if (i != startnode)
+
+        {
+
+            printf("\n distance of node%d=%d", i, distance[i]);
+
+            printf("\n Path=%d", i);
+
+            j = i;
+
+            do
+
+            {
+
+                j = pred[j];
+
+                printf("&lt;-%d", j);
+
+            } while (j != startnode);
+
+        }
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word16">Slip 16</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Floyd Warshall’s algorithm for finding all pairs shortest path using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent31">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent31" class="hidden-content">
+  <button onclick="cc31()">Copy</button>
+  <pre id="id31">#include &lt;stdio.h&gt;
+#define nV 4
+#define INF 999
+void printMatrix(int matrix[][nV]);
+void floydWarshall(int graph[][nV])
+{
+int matrix[nV][nV],i,j,k;
+for(i=0;i&lt;nV;i++)
+for(j=0;j&lt;nV;j++)
+matrix[i][j]=graph[i][j];
+for(k=0;k&lt;nV;k++)
+{for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][k]+matrix[k][j]&lt;matrix[i][j])
+matrix[i][j]=matrix[i][k]+matrix[k][j];
+}
+}
+}
+printMatrix(matrix);
+}
+void printMatrix(int matrix[][nV])
+{
+int i,j;
+for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][j]==INF)
+printf("%4s",INF);
+else
+printf("%4d",matrix[i][j]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int graph[nV][nV]={{0,3,INF,5},{2,0,INF,4},{INF,1,0,INF},{INF,INF,2,0}};
+floydWarshall(graph);
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent32">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent32" class="hidden-content">
+  <button onclick="cc32()">Copy</button>
+  <pre id="id32">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word17">Slip 17</span></h1>
+<div class="que-prompt">
+<p>Q1. Write a menu driven program to implement hash table using array (insert, search, display). 
+Use any of the above-mentioned hash functions. In case of collision apply linear probing."<span class="toggleWord" data-target="hiddenContent33">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent33" class="hidden-content">
+  <button onclick="cc33()">Copy</button>
+  <pre id="id33">#include&lt;stdio.h&gt;
+int hf(int key,int i)
+{
+return (key%10+i)%10;
+}
+void insert(int HT[10],int key)
+{
+int i,index;
+for(i=0;i&lt;10;i++)
+{
+index=hf(key,i);
+if(HT[index]==-1)
+{
+HT[index]=key;
+return;
+}
+}printf("\nCould not insert key %d",key);
+}
+int search(int HT[10],int key)
+{
+int i,index;
+for(i=0;i&lt;10;i++)
+{
+index=hf(key,i);
+if(HT[index]==key)
+return index;
+}
+return -1;
+}
+void delete(int HT[10],int key)
+{
+int index;
+index=search(HT,key);
+if(index==-1)
+printf("\n %d key not found",key);
+else
+HT[index]=-1;
+}
+void showTable(int HT[10])
+{
+int i;
+for(i=0;i&lt;10;i++)
+printf("%d[%d]\n",i,HT[i]);
+}
+int main()
+{
+int HT[10],choice,key,index,i;
+for(i=0;i&lt;10;i++)
+HT[i]=-1;
+do
+{
+printf("\n1:Insert\n2:Search\n3:Delete\n4:Exit\n\nEnter your choice: ");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+printf("\nEnter the key to be inserted: ");
+scanf("%d",&key);
+insert(HT,key);
+showTable(HT);
+break;
+case 2:
+printf("\nEnter the key to be Searched: ");
+scanf("%d",&key);
+index=search(HT,key);
+if(index==-1)
+printf("\n %d not found",key);
+else
+printf("\n %d found at position %d",key,index);
+break;
+case 3:
+printf("\nEnter the key to be Deleted: ");
+scanf("%d",&key);
+delete(HT,key);
+showTable(HT);
+break;
+}
+}while(choice!=4);
+return 0;
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent34">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent34" class="hidden-content">
+  <button onclick="cc34()">Copy</button>
+  <pre id="34">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word18">Slip 18</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program that accepts the vertices and edges of a graph and stores it as an adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent35">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent35" class="hidden-content">
+  <button onclick="cc35()">Copy</button>
+  <pre id="id35">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2.Write a C program that accepts the vertices and edges of a graph and stores it as an adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent36">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent36" class="hidden-content">
+  <button onclick="cc36()">Copy</button>
+  <pre id="36">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word19">Slip 19</span></h1>
+<div class="que-prompt">
+<p>Que. Implement a Binary search tree (BST) library (btree.h) with operations – create, insert, preorder,postorder,inorder. Write a menu 
+driven program that performs the above operations"<span class="toggleWord" data-target="hiddenContent37">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent37" class="hidden-content">
+  <button onclick="cc37()">Copy</button>
+  <pre id="id37">//btree.h
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct bst
+{
+    int data;
+    struct bst *lchild, *rchild;
+} node;
+int cnt = 0, leafcnt = 0, nleafcnt = 0;
+struct bst *create()
+{
+    struct bst *temp = (struct bst *)malloc(sizeof(struct bst));
+    temp -&gt;lchild = NULL;
+    temp -&gt;rchild = NULL;
+    return temp;
+}
+
+void insert(struct bst *r, struct bst *new1)
+{
+    if (new1 -&gt; data & lt; r -&gt; data)
+    {
+        if (r -&gt; lchild == NULL)
+            r -&gt;
+        lchild = new1;
+        else insert(r -&gt; lchild, new1);
+    }
+
+    if (new1 -&gt; data & gt; r -&gt; data)
+    {
+        if (r -&gt; rchild == NULL)
+            r -&gt;
+        rchild = new1;
+        else insert(r -&gt; rchild, new1);
+    }
+}
+void inorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp -&gt; lchild);
+        printf("%d\t", temp -&gt; data);
+        inorder(temp -&gt; rchild);
+    }
+}
+void postorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        postorder(temp -&gt; lchild);
+        postorder(temp -&gt; rchild);
+        printf("%d\t", temp -&gt; data);
+    }
+}
+void preorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        printf("%d\t", temp -&gt; data);
+        preorder(temp -&gt; lchild);
+        preorder(temp -&gt; rchild);
+    }
+}
+
+// program
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "btree.h"
+int main()
+{
+    int ch, n, i, value, cnt;
+    struct bst *newnode, *root, *temp;
+    root = NULL;
+    while (1)
+    {
+        printf("\n---Binary Search Tree---\n");
+        printf("1.Insert\n");
+        printf("2.Inorder Traversal (Recursive)\n");
+        printf("3.Postorder Traversal (Recursive)\n");
+        printf("4.Preorder Traversal (Recursive)\n");
+        printf("5.Exit\n");
+        printf("Enter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf("\nHow many nodes to create:");
+            scanf("%d", &n);
+            for (i = 0; i &lt; n; i++)
+            {
+                newnode = create();
+                printf("\nEnter the node data:");
+                scanf("%d", &newnode -&gt; data);
+                if (root == NULL)
+                    root = newnode;
+                else
+                    insert(root, newnode);
+            }
+            break;
+        case 2:
+            printf("\nInorder Traversal=");
+            inorder(root);
+            break;
+        case 3:
+            printf("\nPostorder Traversal=");
+            postorder(root);
+            break;
+        case 4:
+            printf("\nPreorder Traversal=");
+            preorder(root);
+            break;
+        case 5:
+            exit(0);
+        default:
+            printf("\nInvalid Choice\n");
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph. Create adjacency list."<span class="toggleWord" data-target="hiddenContent38">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent38" class="hidden-content">
+  <button onclick="cc38()">Copy</button>
+  <pre id="38">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+typedef struct node
+
+{
+
+    int vertex;
+
+    struct node *next;
+
+} NODE;
+
+NODE *list[10];
+
+int create(int a[10][10], int n)
+
+{
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void clist(int a[10][10], int n)
+
+{
+
+    NODE *temp, *newnode;
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        list[i] = NULL;
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            if (a[i][j] == 1)
+
+            {
+
+                newnode = (NODE *)malloc(sizeof(NODE));
+
+                newnode-&gt;vertex = j + 1;
+
+                newnode-&gt;next = NULL;
+
+                if (list[i] == NULL)
+
+                    list[i] = temp = newnode;
+
+                else
+
+                    temp-&gt;next = newnode;
+
+                temp = newnode;
+
+            }
+
+        }
+
+    }
+
+}
+
+void dlist(int n)
+
+{
+
+    NODE *temp;
+
+    printf("\nThe Adjacency list is: ");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        printf("v%d--&gt;", i + 1);
+
+        temp = list[i];
+
+        while (temp)
+
+        {
+
+            printf("v%d--&gt;", temp-&gt;vertex);
+
+            temp = temp-&gt;next;
+
+        }
+
+        printf("NULL\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    clist(a, n);
+
+    dlist(n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word20">Slip 20</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the Implementation of Kruskal’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent39">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent39" class="hidden-content">
+  <button onclick="cc39()">Copy</button>
+  <pre id="39">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+int i, j, k, a, b, u, v, n, ne = 1;
+
+int min, mincost = 0, cost[9][9], parent[9];
+
+int find(int);
+
+int uni(int, int);
+
+void main()
+
+{
+
+    printf("\n\timplementation of kruskal's algorithm\n");
+
+    printf("\nenter the no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nenter the cost adjacency matrix:\n");
+
+    for (i = 1; i &lt;= n; i++)
+
+    {
+
+        for (j = 1; j &lt;= n; j++)
+
+        {
+
+            scanf("%d", &cost[i][j]);
+
+            if (cost[i][j] == 0)
+
+                cost[i][j] = 999;
+
+        }
+
+    }
+
+    printf("the edges of minimum cost spanninf tree are\n");
+
+    while (ne &lt; n)
+
+    {
+
+        for (i = 1, min = 999; i &lt;= n; i++)
+
+        {
+
+            for (j = 1; j &lt;= n; j++)
+
+            {
+
+                if (cost[i][j] &lt; min)
+
+                {
+
+                    min = cost[i][j];
+
+                    a = u = i;
+
+                    b = v = j;
+
+                }
+
+            }
+
+        }
+
+        u = find(u);
+
+        v = find(v);
+
+        if (uni(u, v))
+
+        {
+
+            printf("%d edges (%d,%d)=%d\n", ne++, a, b, min);
+
+            mincost += min;
+
+        }
+
+        cost[a][b] = cost[b][a] = 999;
+
+    }
+
+    printf("\n\tminimum cost+%d\n", mincost);
+
+}
+
+int find(int i)
+
+{
+
+    while (parent[i])
+
+        i = parent[i];
+
+    return i;
+
+}
+
+int uni(int i, int j)
+
+{
+
+    if (1 != j)
+
+    {
+
+        parent[j] = i;
+
+        return 1;
+
+    }
+
+    return 0;
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph and store it as an adjacency matrix. Implement function to traverse the graph using Breadth First Search (BFS) traversal."<span class="toggleWord" data-target="hiddenContent40">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent40" class="hidden-content">
+  <button onclick="cc40()">Copy</button>
+  <pre id="id40">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define MAXSIZE 20
+
+typedef struct
+
+{
+
+    int data[MAXSIZE];
+
+    int front, rear;
+
+} QUEUE;
+
+void initq(QUEUE *pq)
+
+{
+
+    pq-&gt;front = pq-&gt;rear = -1;
+
+}
+
+void addq(QUEUE *pq, int n)
+
+{
+
+    pq-&gt;data[++pq-&gt;rear] = n;
+
+}
+
+int removeq(QUEUE *pq)
+
+{
+
+    return pq-&gt;data[++pq-&gt;front];
+
+}
+
+int isempty(QUEUE *pq)
+
+{
+
+    return (pq-&gt;front == pq-&gt;rear);
+
+}
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void bfs(int a[10][10], int n)
+
+{
+
+    int v = 0;
+
+    int visited[20] = {0};
+
+    QUEUE q;
+
+    initq(&q);
+
+    printf("\nThe Breadth First Traversal is:\n");
+
+    visited[v] = 1;
+
+    addq(&q, v);
+
+    while (!isempty(&q))
+
+    {
+
+        v = removeq(&q);
+
+        printf("v%d\t", v + 1);
+
+        for (int w = 0; w &lt; n; w++)
+
+        {
+
+            if ((a[v][w] == 1) && (visited[w] == 0))
+
+            {
+
+                addq(&q, w);
+
+                visited[w] = 1;
+
+            }
+
+        }
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    bfs(a, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word21">Slip 21</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Dijkstra’s shortest path algorithm for finding shortest path from a given source vertex using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent41">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent41" class="hidden-content">
+  <button onclick="cc41()">Copy</button>
+  <pre id="id41">#include &lt;stdio.h&gt;
+
+#define INFINITY 9999
+
+#define MAX 10
+
+void dijkstra(int G[MAX][MAX], int n, int startnode);
+
+int main()
+
+{
+
+    int G[MAX][MAX], i, j, n, u;
+
+    printf("enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nenter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    printf("\nenter the starting node:");
+
+    scanf("%d", &u);
+
+    dijkstra(G, n, u);
+
+    return 0;
+
+}
+
+void dijkstra(int G[MAX][MAX], int n, int startnode)
+
+{
+
+    int cost[MAX][MAX], distance[MAX], pred[MAX];
+
+    int visited[MAX], count, mindistance, nextnode, i, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = INFINITY;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[startnode][i];
+
+        pred[i] = startnode;
+
+        visited[i] = 0;
+
+    }
+
+    distance[startnode] = 0;
+
+    visited[startnode] = 1;
+
+    count = 1;
+
+    while (count &lt; n - 1)
+
+    {
+
+        mindistance = INFINITY;
+
+        for (i = 0; i &lt; n; i++)
+
+            if (distance[i] &lt; mindistance && !visited[i])
+
+            {
+
+                mindistance = distance[i];
+
+                nextnode = i;
+
+            }
+
+        visited[nextnode] = 1;
+
+        for (i = 0; i &lt; n; i++)
+
+            if (!visited[i])
+
+                if (mindistance + cost[nextnode][i] &lt; distance[i])
+
+                {
+
+                    distance[i] = mindistance + cost[nextnode][i];
+
+                    pred[i] = nextnode;
+
+                }
+
+        count++;
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+        if (i != startnode)
+
+        {
+
+            printf("\n distance of node%d=%d", i, distance[i]);
+
+            printf("\n Path=%d", i);
+
+            j = i;
+
+            do
+
+            {
+
+                j = pred[j];
+
+                printf("&lt;-%d", j);
+
+            } while (j != startnode);
+
+        }
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program for the Implementation of Prim’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent42">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent42" class="hidden-content">
+  <button onclick="cc42()">Copy</button>
+  <pre id="42">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define infinity 9999
+
+#define MAX 20
+
+int G[MAX][MAX], spanning[MAX][MAX], n;
+
+int prims();
+
+int main()
+
+{
+
+    int i, j, total_cost;
+
+    printf("Enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    total_cost = prims();
+
+    printf("\nspanning tree matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("\n");
+
+        for (j = 0; j &lt; n; j++)
+
+            printf("%d\t", spanning[i][j]);
+
+    }
+
+    printf("\n\nTotal cost of spanning tree=%d", total_cost);
+
+    return 0;
+
+}
+
+int prims()
+
+{
+
+    int cost[MAX][MAX];
+
+    int u, v, min_distance, distance[MAX], from[MAX];
+
+    int visited[MAX], no_of_edges, i, min_cost, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+        {
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = infinity;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+            spanning[i][j] = 0;
+
+        }
+
+    distance[0] = 0;
+
+    visited[0] = 1;
+
+    for (i = 1; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[0][i];
+
+        from[i] = 0;
+
+        visited[i] = 0;
+
+    }
+
+    min_cost = 0;
+
+    no_of_edges = n - 1;
+
+    while (no_of_edges &gt; 0)
+
+    {
+
+        min_distance = infinity;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[i] == 0 && distance[i] &lt; min_distance)
+
+            {
+
+                v = i;
+
+                min_distance = distance[i];
+
+            }
+
+        u = from[v];
+
+        spanning[u][v] = distance[v];
+
+        spanning[v][u] = distance[v];
+
+        no_of_edges--;
+
+        visited[v] = 1;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[1] == 0 && cost[i][v] &lt; distance[i])
+
+            {
+
+                distance[i] = cost[i][v];
+
+                from[i] = v;
+
+            }
+
+        min_cost = min_cost + cost[u][v];
+
+    }
+
+    return (min_cost);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word22">Slip 22</span></h1>
+<div class="que-prompt">
+<p>Que. Implement a Binary search tree (BST) library (btree.h) with operations – create, insert, preorder,postorder,inorder. Write a menu 
+driven program that performs the above operations"<span class="toggleWord" data-target="hiddenContent43">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent43" class="hidden-content">
+  <button onclick="cc43()">Copy</button>
+  <pre id="id43">//btree.h
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+struct bst
+{
+    int data;
+    struct bst *lchild, *rchild;
+} node;
+int cnt = 0, leafcnt = 0, nleafcnt = 0;
+struct bst *create()
+{
+    struct bst *temp = (struct bst *)malloc(sizeof(struct bst));
+    temp -&gt;lchild = NULL;
+    temp -&gt;rchild = NULL;
+    return temp;
+}
+
+void insert(struct bst *r, struct bst *new1)
+{
+    if (new1 -&gt; data & lt; r -&gt; data)
+    {
+        if (r -&gt; lchild == NULL)
+            r -&gt;
+        lchild = new1;
+        else insert(r -&gt; lchild, new1);
+    }
+
+    if (new1 -&gt; data & gt; r -&gt; data)
+    {
+        if (r -&gt; rchild == NULL)
+            r -&gt;
+        rchild = new1;
+        else insert(r -&gt; rchild, new1);
+    }
+}
+void inorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp -&gt; lchild);
+        printf("%d\t", temp -&gt; data);
+        inorder(temp -&gt; rchild);
+    }
+}
+void postorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        postorder(temp -&gt; lchild);
+        postorder(temp -&gt; rchild);
+        printf("%d\t", temp -&gt; data);
+    }
+}
+void preorder(struct bst *temp)
+{
+    if (temp != NULL)
+    {
+        printf("%d\t", temp -&gt; data);
+        preorder(temp -&gt; lchild);
+        preorder(temp -&gt; rchild);
+    }
+}
+
+// program
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "btree.h"
+int main()
+{
+    int ch, n, i, value, cnt;
+    struct bst *newnode, *root, *temp;
+    root = NULL;
+    while (1)
+    {
+        printf("\n---Binary Search Tree---\n");
+        printf("1.Insert\n");
+        printf("2.Inorder Traversal (Recursive)\n");
+        printf("3.Postorder Traversal (Recursive)\n");
+        printf("4.Preorder Traversal (Recursive)\n");
+        printf("5.Exit\n");
+        printf("Enter your choice:");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            printf("\nHow many nodes to create:");
+            scanf("%d", &n);
+            for (i = 0; i &lt; n; i++)
+            {
+                newnode = create();
+                printf("\nEnter the node data:");
+                scanf("%d", &newnode -&gt; data);
+                if (root == NULL)
+                    root = newnode;
+                else
+                    insert(root, newnode);
+            }
+            break;
+        case 2:
+            printf("\nInorder Traversal=");
+            inorder(root);
+            break;
+        case 3:
+            printf("\nPostorder Traversal=");
+            postorder(root);
+            break;
+        case 4:
+            printf("\nPreorder Traversal=");
+            preorder(root);
+            break;
+        case 5:
+            exit(0);
+        default:
+            printf("\nInvalid Choice\n");
+        }
+    }
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program that accepts the vertices and edges of a graph. Create adjacency list."<span class="toggleWord" data-target="hiddenContent44">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent44" class="hidden-content">
+  <button onclick="cc44()">Copy</button>
+  <pre id="id44">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+typedef struct node
+
+{
+
+    int vertex;
+
+    struct node *next;
+
+} NODE;
+
+NODE *list[10];
+
+int create(int a[10][10], int n)
+
+{
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void clist(int a[10][10], int n)
+
+{
+
+    NODE *temp, *newnode;
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        list[i] = NULL;
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            if (a[i][j] == 1)
+
+            {
+
+                newnode = (NODE *)malloc(sizeof(NODE));
+
+                newnode-&gt;vertex = j + 1;
+
+                newnode-&gt;next = NULL;
+
+                if (list[i] == NULL)
+
+                    list[i] = temp = newnode;
+
+                else
+
+                    temp-&gt;next = newnode;
+
+                temp = newnode;
+
+            }
+
+        }
+
+    }
+
+}
+
+void dlist(int n)
+
+{
+
+    NODE *temp;
+
+    printf("\nThe Adjacency list is: ");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        printf("v%d--&gt;", i + 1);
+
+        temp = list[i];
+
+        while (temp)
+
+        {
+
+            printf("v%d--&gt;", temp-&gt;vertex);
+
+            temp = temp-&gt;next;
+
+        }
+
+        printf("NULL\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    clist(a, n);
+
+    dlist(n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word23">Slip 23</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Dijkstra’s shortest path algorithm for finding shortest path from a given source vertex using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent45">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent45" class="hidden-content">
+  <button onclick="cc45()">Copy</button>
+  <pre id="id45">#include &lt;stdio.h&gt;
+
+#define INFINITY 9999
+
+#define MAX 10
+
+void dijkstra(int G[MAX][MAX], int n, int startnode);
+
+int main()
+
+{
+
+    int G[MAX][MAX], i, j, n, u;
+
+    printf("enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nenter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    printf("\nenter the starting node:");
+
+    scanf("%d", &u);
+
+    dijkstra(G, n, u);
+
+    return 0;
+
+}
+
+void dijkstra(int G[MAX][MAX], int n, int startnode)
+
+{
+
+    int cost[MAX][MAX], distance[MAX], pred[MAX];
+
+    int visited[MAX], count, mindistance, nextnode, i, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = INFINITY;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[startnode][i];
+
+        pred[i] = startnode;
+
+        visited[i] = 0;
+
+    }
+
+    distance[startnode] = 0;
+
+    visited[startnode] = 1;
+
+    count = 1;
+
+    while (count &lt; n - 1)
+
+    {
+
+        mindistance = INFINITY;
+
+        for (i = 0; i &lt; n; i++)
+
+            if (distance[i] &lt; mindistance && !visited[i])
+
+            {
+
+                mindistance = distance[i];
+
+                nextnode = i;
+
+            }
+
+        visited[nextnode] = 1;
+
+        for (i = 0; i &lt; n; i++)
+
+            if (!visited[i])
+
+                if (mindistance + cost[nextnode][i] &lt; distance[i])
+
+                {
+
+                    distance[i] = mindistance + cost[nextnode][i];
+
+                    pred[i] = nextnode;
+
+                }
+
+        count++;
+
+    }
+
+    for (i = 0; i &lt; n; i++)
+
+        if (i != startnode)
+
+        {
+
+            printf("\n distance of node%d=%d", i, distance[i]);
+
+            printf("\n Path=%d", i);
+
+            j = i;
+
+            do
+
+            {
+
+                j = pred[j];
+
+                printf("&lt;-%d", j);
+
+            } while (j != startnode);
+
+        }
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2.Write a C program that accepts the vertices and edges of a graph and stores it as an adjacency matrix. Display the adjacency matrix."<span class="toggleWord" data-target="hiddenContent46">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent46" class="hidden-content">
+  <button onclick="cc46()">Copy</button>
+  <pre id="id46">#include &lt;stdio.h&gt;
+
+#include &lt;malloc.h&gt;
+
+void create(int a[10][10], int n)
+
+{
+
+    printf("\n****TYPE 1 FOR YES & 0 FOR NO****\n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            a[i][j] = 0;
+
+            if (i != j)
+
+            {
+
+                printf("\nIs there any edge between %d & %d: ", i + 1, j + 1);
+
+                scanf("%d", &a[i][j]);
+
+            }
+
+        }
+
+    }
+
+}
+
+void display(int a[10][10], int n)
+
+{
+
+    printf("\nThe Matrix is: \n");
+
+    for (int i = 0; i &lt; n; i++)
+
+    {
+
+        for (int j = 0; j &lt; n; j++)
+
+        {
+
+            printf("%d\t", a[i][j]);
+
+        }
+
+        printf("\n");
+
+    }
+
+}
+
+int main()
+
+{
+
+    int a[10][10], n;
+
+    printf("\nEnter the no. of vertex: ");
+
+    scanf("%d", &n);
+
+    create(a, n);
+
+    display(a, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word24">Slip 24</span></h1>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent47">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent47" class="hidden-content">
+  <button onclick="cc47()">Copy</button>
+  <pre id="id47">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>Q 2. Write a C program for the Implementation of Prim’s Minimum spanning tree algorithm."<span class="toggleWord" data-target="hiddenContent48">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent48" class="hidden-content">
+  <button onclick="cc48()">Copy</button>
+  <pre id="id48">#include &lt;stdio.h&gt;
+
+#include &lt;stdlib.h&gt;
+
+#define infinity 9999
+
+#define MAX 20
+
+int G[MAX][MAX], spanning[MAX][MAX], n;
+
+int prims();
+
+int main()
+
+{
+
+    int i, j, total_cost;
+
+    printf("Enter no. of vertices:");
+
+    scanf("%d", &n);
+
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+            scanf("%d", &G[i][j]);
+
+    total_cost = prims();
+
+    printf("\nspanning tree matrix:\n");
+
+    for (i = 0; i &lt; n; i++)
+
+    {
+
+        printf("\n");
+
+        for (j = 0; j &lt; n; j++)
+
+            printf("%d\t", spanning[i][j]);
+
+    }
+
+    printf("\n\nTotal cost of spanning tree=%d", total_cost);
+
+    return 0;
+
+}
+
+int prims()
+
+{
+
+    int cost[MAX][MAX];
+
+    int u, v, min_distance, distance[MAX], from[MAX];
+
+    int visited[MAX], no_of_edges, i, min_cost, j;
+
+    for (i = 0; i &lt; n; i++)
+
+        for (j = 0; j &lt; n; j++)
+
+        {
+
+            if (G[i][j] == 0)
+
+                cost[i][j] = infinity;
+
+            else
+
+                cost[i][j] = G[i][j];
+
+            spanning[i][j] = 0;
+
+        }
+
+    distance[0] = 0;
+
+    visited[0] = 1;
+
+    for (i = 1; i &lt; n; i++)
+
+    {
+
+        distance[i] = cost[0][i];
+
+        from[i] = 0;
+
+        visited[i] = 0;
+
+    }
+
+    min_cost = 0;
+
+    no_of_edges = n - 1;
+
+    while (no_of_edges &gt; 0)
+
+    {
+
+        min_distance = infinity;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[i] == 0 && distance[i] &lt; min_distance)
+
+            {
+
+                v = i;
+
+                min_distance = distance[i];
+
+            }
+
+        u = from[v];
+
+        spanning[u][v] = distance[v];
+
+        spanning[v][u] = distance[v];
+
+        no_of_edges--;
+
+        visited[v] = 1;
+
+        for (i = 1; i &lt; n; i++)
+
+            if (visited[1] == 0 && cost[i][v] &lt; distance[i])
+
+            {
+
+                distance[i] = cost[i][v];
+
+                from[i] = v;
+
+            }
+
+        min_cost = min_cost + cost[u][v];
+
+    }
+
+    return (min_cost);
+
+}</pre>
+</div>
+</div>
+<hr>
+<h1><span id="word25">Slip 25</span></h1>
+<div class="que-prompt">
+<p>Q 1. Write a C program for the implementation of Floyd Warshall’s algorithm for finding all pairs shortest path using adjacency cost matrix."<span class="toggleWord" data-target="hiddenContent49">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent49" class="hidden-content">
+  <button onclick="cc49()">Copy</button>
+  <pre id="id49">#include &lt;stdio.h&gt;
+#define nV 4
+#define INF 999
+void printMatrix(int matrix[][nV]);
+void floydWarshall(int graph[][nV])
+{
+int matrix[nV][nV],i,j,k;
+for(i=0;i&lt;nV;i++)
+for(j=0;j&lt;nV;j++)
+matrix[i][j]=graph[i][j];
+for(k=0;k&lt;nV;k++)
+{for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][k]+matrix[k][j]&lt;matrix[i][j])
+matrix[i][j]=matrix[i][k]+matrix[k][j];
+}
+}
+}
+printMatrix(matrix);
+}
+void printMatrix(int matrix[][nV])
+{
+int i,j;
+for(i=0;i&lt;nV;i++)
+{
+for(j=0;j&lt;nV;j++)
+{
+if(matrix[i][j]==INF)
+printf("%4s",INF);
+else
+printf("%4d",matrix[i][j]);
+}
+printf("\n");
+}
+}
+int main()
+{
+int graph[nV][nV]={{0,3,INF,5},{2,0,INF,4},{INF,1,0,INF},{INF,INF,2,0}};
+floydWarshall(graph);
+}</pre>
+</div>
+</div>
+<div class="que-prompt">
+<p>QUE. Write a program to sort n randomly generated elements using Heapsort method."<span class="toggleWord" data-target="hiddenContent50">OPEN</span>"</p>
+</div>
+<div class="code-area">
+<div id="hiddenContent50" class="hidden-content">
+  <button onclick="cc50()">Copy</button>
+  <pre id="id50">#include &lt;stdio.h&gt;
+
+void swap(int *a, int *b)
+
+{
+
+    int tmp = *a;
+
+    *a = *b;
+
+    *b = tmp;
+
+}
+
+
+
+void heapify(int arr[], int n, int i)
+
+{
+
+    int max = i;
+
+    int leftChild = 2 * i;
+
+    int rightChild = 2 * i + 1;
+
+    if (leftChild &lt; n && arr[leftChild] &gt; arr[max])
+
+        max = leftChild;
+
+    if (rightChild &lt; n && arr[rightChild] &gt; arr[max])
+
+        max = rightChild;
+
+    if (max != i)
+
+    {
+
+        swap(&arr[i], &arr[max]);
+
+        heapify(arr, n, max);
+
+    }
+
+}
+
+void heapSort(int arr[], int n)
+
+{
+
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+
+        heapify(arr, n, i);
+
+    for (int i = n - 1; i &gt;= 0; i--)
+
+    {
+
+        swap(&arr[0], &arr[i]);
+
+        heapify(arr, i, 0);
+
+    }
+
+}
+
+void display(int arr[], int n)
+
+{
+
+    for (int i = 0; i &lt; n; ++i)
+
+        printf("%d ", arr[i]);
+
+    printf("\n");
+
+}
+
+int main()
+
+{
+
+    int arr[] = {11, 34, 9, 5, 16, 10};
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array:\n");
+
+    display(arr, n);
+
+    heapSort(arr, n);
+
+    printf("Sorted array:\n");
+
+    display(arr, n);
+
+}</pre>
+</div>
+</div>
+<hr>
+
+
+<!-- Repeat for all hidden paragraphs -->
+
+<script>
+  var toggleWords = document.querySelectorAll('.toggleWord');
+
+  toggleWords.forEach(function(toggleWord) {
+    toggleWord.addEventListener('click', function() {
+      var targetId = this.getAttribute('data-target');
+      var targetContent = document.getElementById(targetId);
+
+      if (targetContent.classList.contains('visible')) {
+        targetContent.classList.remove('visible'); // Hide content
+      } else {
+        targetContent.classList.add('visible'); // Show content
+      }
+    });
+  });
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
