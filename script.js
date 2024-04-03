@@ -165,7 +165,305 @@ function cc18() {
       });
     }
     
+function cc19() {
+      var contentToCopy = document.getElementById('id19').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+    
+    
+function cc20() {
+      var contentToCopy = document.getElementById('id20').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
 
+
+function cc21() {
+      var contentToCopy = document.getElementById('id21').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc22() {
+      var contentToCopy = document.getElementById('id22').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc23() {
+      var contentToCopy = document.getElementById('id23').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc24() {
+      var contentToCopy = document.getElementById('id24').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc25() {
+      var contentToCopy = document.getElementById('id25').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc26() {
+      var contentToCopy = document.getElementById('id26').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc27() {
+      var contentToCopy = document.getElementById('id27').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc28() {
+      var contentToCopy = document.getElementById('id28').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc29() {
+      var contentToCopy = document.getElementById('id29').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc30() {
+      var contentToCopy = document.getElementById('id30').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc31() {
+      var contentToCopy = document.getElementById('id31').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc32() {
+      var contentToCopy = document.getElementById('id32').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc33() {
+      var contentToCopy = document.getElementById('id33').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc34() {
+      var contentToCopy = document.getElementById('id34').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc35() {
+      var contentToCopy = document.getElementById('id35').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc36() {
+      var contentToCopy = document.getElementById('id36').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+    
+function cc37() {
+      var contentToCopy = document.getElementById('id37').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc38() {
+      var contentToCopy = document.getElementById('id38').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc39() {
+      var contentToCopy = document.getElementById('id39').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc40() {
+      var contentToCopy = document.getElementById('id40').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc41() {
+      var contentToCopy = document.getElementById('id41').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+    
+    
+function cc42() {
+      var contentToCopy = document.getElementById('id42').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc43() {
+      var contentToCopy = document.getElementById('id43').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc44() {
+      var contentToCopy = document.getElementById('id44').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc45() {
+      var contentToCopy = document.getElementById('id45').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+
+function cc46() {
+      var contentToCopy = document.getElementById('id46').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc47() {
+      var contentToCopy = document.getElementById('id47').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc48() {
+      var contentToCopy = document.getElementById('id48').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc49() {
+      var contentToCopy = document.getElementById('id49').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+function cc50() {
+      var contentToCopy = document.getElementById('id50').innerText;
+      navigator.clipboard.writeText(contentToCopy).then(function() {
+        alert('Content copied to clipboard!');
+      }, function(err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+    
+    
 function scrollToWord(wordId) {
     var targetWord = document.getElementById(wordId);
     if (targetWord) {
